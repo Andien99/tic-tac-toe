@@ -1,9 +1,21 @@
 const gameBoard = (function() {
-    const openSlots = ['s1', 's2', 's3', 's4', 's5', 's6','s7', 's8', 's9'];
+    const openSlots = ['1', '2', '3', '4', '5', '6','7', '8', '9'];
     const playerSlots = []
     const CPUSlots = []
     console.log('testing')
     let currentPlayer = 'CPU'
+
+    function isValidMoveCPU () {
+        let randomSlot = ''
+        function getRandomInt() {
+            Math.floor(Math.random()*10)
+            randomSlot = (Math.floor(Math.random()*10)).toString()
+        } 
+        while (openSlots.includes(randomSlot) == false && openSlots.length > 0) {
+            getRandomInt()
+        }
+        return isValidMove(randomSlot)
+    }
 
     function isValidMove(move) {
         let chosenMove = move
@@ -11,6 +23,9 @@ const gameBoard = (function() {
             changePlayer();
             moveSet(move);
             checkIfWinner();
+            if (playerSlots.length !== CPUSlots.length) {
+                isValidMoveCPU()
+            }
         } else {
             console.log('this space is already taken!')
         }
@@ -28,7 +43,7 @@ const gameBoard = (function() {
             function moveSet () {
                 for (let i = 0; i < 9 ; i++) {
                     if (chosenMove == openSlots[i]) {
-                        console.log('Player chose ' + openSlots[i] + ' where i is = ' + i)
+                        console.log(currentPlayer  + ' chose ' + openSlots[i] + ' where i = ' + i)
                         if (currentPlayer == 'Player') {
                         playerSlots.push(openSlots[i])
                     }   else {
@@ -43,37 +58,38 @@ const gameBoard = (function() {
             }
     
             function checkIfWinner() {
-                if (playerSlots.includes('s1') && playerSlots.includes('s2') && playerSlots.includes('s3')) {
+                if (playerSlots.includes('1') && playerSlots.includes('2') && playerSlots.includes('3')) {
                     console.log('player wins!')
                 }
-                if (playerSlots.includes('s4') && playerSlots.includes('s5') && playerSlots.includes('s6')) {
+                if (playerSlots.includes('4') && playerSlots.includes('5') && playerSlots.includes('6')) {
                     console.log('player wins!')
                 } 
-                if (playerSlots.includes('s7') && playerSlots.includes('s8') && playerSlots.includes('s9')) {
+                if (playerSlots.includes('7') && playerSlots.includes('8') && playerSlots.includes('9')) {
                     console.log('player wins!')
                 }
-                if (playerSlots.includes('s1') && playerSlots.includes('s4') && playerSlots.includes('s7')) {
+                if (playerSlots.includes('1') && playerSlots.includes('4') && playerSlots.includes('7')) {
                     console.log('player wins!')
                 }
-                if (playerSlots.includes('s2') && playerSlots.includes('s5') && playerSlots.includes('s8')) {
+                if (playerSlots.includes('2') && playerSlots.includes('5') && playerSlots.includes('8')) {
                     console.log('player wins!')
                 }
-                if (playerSlots.includes('s3') && playerSlots.includes('s6') && playerSlots.includes('s9')) {
+                if (playerSlots.includes('3') && playerSlots.includes('6') && playerSlots.includes('9')) {
                     console.log('player wins!')
                 }
-                if (playerSlots.includes('s1') && playerSlots.includes('s5') && playerSlots.includes('s9')) {
+                if (playerSlots.includes('1') && playerSlots.includes('5') && playerSlots.includes('9')) {
                     console.log('player wins!')
                 }
-                if (playerSlots.includes('s3') && playerSlots.includes('s5') && playerSlots.includes('s7')) {
+                if (playerSlots.includes('3') && playerSlots.includes('5') && playerSlots.includes('7')) {
                     console.log('player wins!')
                 }
             }
     }
-return {isValidMove}
+return {
+    isValidMove, 
+    isValidMoveCPU
+}
 })()
 
 function playerMove(move) {
-    gameBoard.changePlayer(),
-    gameBoard.moveSet(move)
-    gameBoard.checkIfWinner()
+    gameBoard.isValidMove(move)
 }
