@@ -4,9 +4,11 @@
 }
 
 body {
-    display: grid;
-    grid-template-rows: 150px 10fr;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     height: 100vh;
+    background-color: #96CDFF;
 }
 
 .header {
@@ -19,8 +21,9 @@ body {
 
 .title {
     color: white;
-    font-size: 6rem;
-    text-decoration: underline;
+    font-size: 8rem;
+    font-weight: bold;
+
 }
 
 .container {
@@ -68,12 +71,18 @@ p {
     gap: 50px;
     width: 500px;
     height: 300px;
-    top: 42%;
-    left: 40%;
-    background-color: whitesmoke;
+    top: 1000rem;
+    left: calc(50% - 250px);
+    background-color: #B8B8FF;
     border-radius: 16px;
-    border: solid 3px black;
+    border: solid 3px #9381FF;
 }
+
+.end-game#open {
+    top: calc(50% - 80px);
+    left: calc(50% - 250px);
+}
+
 
 h3 {
     font-family: "Roboto", sans-serif;

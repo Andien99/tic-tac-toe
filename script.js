@@ -1,11 +1,14 @@
-const openSlots = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-const allSlots = []
 const gameBoard = (function() {
-
-    const playerSlots = []
-    const CPUSlots = []
+    let openSlots = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    let allSlots = []
+    const endGameScreen = document.querySelector('.end-game')
+    const resetbtn = document.getElementById('reset')
+    const winnerAnnouncement = document.getElementById('winnerAnnouncement')
+    let playerSlots = []
+    let CPUSlots = []
     let winner = ''
     let currentPlayer = 'CPU'
+    let moveCounter = 0
     const game = document.getElementById('game')
 
     function settingUpBoard() {
@@ -25,6 +28,19 @@ const gameBoard = (function() {
             })
         }
     }
+
+    resetbtn.addEventListener('click', () => {
+        openSlots = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        playerSlots = []
+        winner = ''
+        CPUSlots = []
+        moveCounter = 0
+        currentPlayer = 'CPU'
+        for (let i = 0; i < 9; i++) {
+            allSlots[i].textContent = ''
+        }
+        endGameScreen.setAttribute('id', 'closed')
+    })
 
 
     function isValidMoveCPU () {
@@ -70,9 +86,11 @@ const gameBoard = (function() {
                         if (currentPlayer == 'Player') {
                         playerSlots.push(openSlots[i])
                         allSlots[i].textContent = 'o'
+                        moveCounter++
                     }   else {
                         CPUSlots.push(openSlots[i]);
                         allSlots[i].textContent = 'x'
+                        moveCounter++
                     }
                         openSlots[i]='taken';   
                         console.log('availble slots are now ' + openSlots)
@@ -87,71 +105,105 @@ const gameBoard = (function() {
                 if (playerSlots.includes(1) && playerSlots.includes(2) && playerSlots.includes(3)) {
                     console.log('player wins!');
                     winner = 'player'
+                    winnerAnnouncement.textContent = 'You won! Play again?'
+                    endGameScreen.setAttribute('id','open')
                 }
                 if (playerSlots.includes(4) && playerSlots.includes(5) && playerSlots.includes(6)) {
                     console.log('player wins!');
                     winner = 'player'
+                    winnerAnnouncement.textContent = 'You won! Play again?'
+                    endGameScreen.setAttribute('id','open')
                 } 
                 if (playerSlots.includes(7) && playerSlots.includes(8) && playerSlots.includes(9)) {
                     console.log('player wins!');
                     winner = 'player'
+                    winnerAnnouncement.textContent = 'You won! Play again?'
+                    endGameScreen.setAttribute('id','open')
                 }
                 if (playerSlots.includes(1) && playerSlots.includes(4) && playerSlots.includes(7)) {
                     console.log('player wins!');
                     winner = 'player'
+                    winnerAnnouncement.textContent = 'You won! Play again?'
+                    endGameScreen.setAttribute('id','open')
                 }
                 if (playerSlots.includes(2) && playerSlots.includes(5) && playerSlots.includes(8)) {
                     console.log('player wins!');
                     winner = 'player'
+                    winnerAnnouncement.textContent = 'You won! Play again?'
+                    endGameScreen.setAttribute('id','open')
                 }
                 if (playerSlots.includes(3) && playerSlots.includes(6) && playerSlots.includes(9)) {
                     console.log('player wins!');
                     winner = 'player'
+                    winnerAnnouncement.textContent = 'You won! Play again?'
+                    endGameScreen.setAttribute('id','open')
                 }
                 if (playerSlots.includes(1) && playerSlots.includes(5) && playerSlots.includes(9)) {
                     console.log('player wins!');
                     winner = 'player'
+                    winnerAnnouncement.textContent = 'You won! Play again?'
+                    endGameScreen.setAttribute('id','open')
                 }
                 if (playerSlots.includes(3) && playerSlots.includes(5) && playerSlots.includes(7)) {
                     console.log('player wins!');
                     winner = 'player'
+                    winnerAnnouncement.textContent = 'You won! Play again?'
+                    endGameScreen.setAttribute('id','open')
                 }
 
                 // Checks for CPU's winning conditions
                 if (CPUSlots.includes(1) && CPUSlots.includes(2) && CPUSlots.includes(3)) {
                     console.log('CPU wins!');
                     winner = 'CPU'
+                    winnerAnnouncement.textContent = 'You lost! Play again?'
+                    endGameScreen.setAttribute('id','open')
                 }
                 if (CPUSlots.includes(4) && CPUSlots.includes(5) && CPUSlots.includes(6)) {
                     console.log('CPU wins!');
                     winner = 'CPU'
+                    winnerAnnouncement.textContent = 'You lost! Play again?'
+                    endGameScreen.setAttribute('id','open')
                 } 
                 if (CPUSlots.includes(7) && CPUSlots.includes(8) && CPUSlots.includes(9)) {
                     console.log('CPU wins!');
                     winner = 'CPU'
+                    winnerAnnouncement.textContent = 'You lost! Play again?'
+                    endGameScreen.setAttribute('id','open')
                 }
                 if (CPUSlots.includes(1) && CPUSlots.includes(4) && CPUSlots.includes(7)) {
                     console.log('CPU wins!');
                     winner = 'CPU'
+                    winnerAnnouncement.textContent = 'You lost! Play again?'
+                    endGameScreen.setAttribute('id','open')
                 }
                 if (CPUSlots.includes(2) && CPUSlots.includes(5) && CPUSlots.includes(8)) {
                     console.log('CPU wins!');
                     winner = 'CPU'
+                    winnerAnnouncement.textContent = 'You lost! Play again?'
+                    endGameScreen.setAttribute('id','open')
                 }
                 if (CPUSlots.includes(3) && CPUSlots.includes(6) && CPUSlots.includes(9)) {
                     console.log('CPU wins!');
                     winner = 'CPU'
+                    winnerAnnouncement.textContent = 'You lost! Play again?'
+                    endGameScreen.setAttribute('id','open')
                 }
                 if (CPUSlots.includes(1) && CPUSlots.includes(5) && CPUSlots.includes(9)) {
                     console.log('CPU wins!');
                     winner = 'CPU'
+                    winnerAnnouncement.textContent = 'You lost! Play again?'
+                    endGameScreen.setAttribute('id','open')
                 }
                 if (CPUSlots.includes(3) && CPUSlots.includes(5) && CPUSlots.includes(7)) {
                     console.log('CPU wins!');
                     winner = 'CPU'
+                    winnerAnnouncement.textContent = 'You lost! Play again?'
+                    endGameScreen.setAttribute('id','open')
                 }
-                if (winner == '' && openSlots.length == 0) {
+                if (winner == '' && moveCounter == 9) {
                     console.log('Its a draw!')
+                    winnerAnnouncement.textContent = 'Its a draw! Play again?'
+                    endGameScreen.setAttribute('id','open')
                 }
             }
     }
@@ -161,11 +213,5 @@ return {
     settingUpBoard
 }
 })()
-
-
-function playerMove(move) {
-    
-    gameBoard.isValidMove(move)
-}
 
 gameBoard.settingUpBoard()
