@@ -59,3 +59,30 @@ p {
     font-size: 200px;
     margin-bottom: 20px;
 }
+
+.end-game {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    width: 500px;
+    height: 300px;
+    top: 42%;
+    left: 40%;
+    background-color: whitesmoke;
+    border-radius: 16px;
+    border: solid 3px black;
+}
+
+h3 {
+    font-family: "Roboto", sans-serif;
+    font-size: 40px;
+    text-align: center;
+    padding-top: 50px;
+}
+
+#reset {
+    width: 150px ;
+    font-size: 32px;
+}
